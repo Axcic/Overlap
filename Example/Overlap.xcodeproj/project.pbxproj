@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25264C1D1E4469380092C227 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25264C1C1E4469380092C227 /* LaunchScreen.storyboard */; };
 		2EDC179E94DB44928CEDD966 /* Pods_Overlap_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C91CC5AE168409B8EE174A /* Pods_Overlap_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		02FD754B2E524228BA613B19 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2230310015E9E7E6455E842C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		25264C1C1E4469380092C227 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5ADB879509B62329F9B7B637 /* Overlap.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Overlap.podspec; path = ../Overlap.podspec; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* Overlap_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overlap_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -133,6 +135,7 @@
 				6003F59C195388D20070C39A /* MLWAppDelegate.h */,
 				6003F59D195388D20070C39A /* MLWAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				25264C1C1E4469380092C227 /* LaunchScreen.storyboard */,
 				6003F5A5195388D20070C39A /* MLWViewController.h */,
 				6003F5A6195388D20070C39A /* MLWViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -247,6 +250,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Anton Bukov";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = THEF2LH22X;
+						ProvisioningStyle = Manual;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -277,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				25264C1D1E4469380092C227 /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
@@ -513,12 +521,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = THEF2LH22X;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlap/Overlap-Prefix.pch";
 				INFOPLIST_FILE = "Overlap/Overlap-Info.plist";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "61b7b0b3-ee94-4456-8d71-2230349ac462";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development *";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -529,6 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlap/Overlap-Prefix.pch";
 				INFOPLIST_FILE = "Overlap/Overlap-Info.plist";
