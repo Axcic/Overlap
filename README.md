@@ -10,7 +10,7 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-<image src="/images/overlap.png" width="250">
+<image src="/images/overlap.gif" width="250">
 
 ## Requirements
 
