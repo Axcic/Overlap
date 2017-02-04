@@ -21,6 +21,12 @@
 
 @implementation MLWViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [[MLWInverseStatusBar sharedInstance] overlapWithViewPaths:@[]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -74,29 +80,44 @@
         }
     }
     
-    UIBezierPath *fullPath = [UIBezierPath bezierPathWithRect:self.overlapView.bounds];
-    UIBezierPath *leftFullPath = [UIBezierPath bezierPathWithRect:[self.leftPanView convertRect:self.leftPanView.bounds toView:self.overlapView]];
-    UIBezierPath *rightFullPath = [UIBezierPath bezierPathWithRoundedRect:[self.rightPanView convertRect:self.rightPanView.bounds toView:self.overlapView] cornerRadius:self.rightPanView.layer.cornerRadius];
+    {
+        UIBezierPath *fullPath = [UIBezierPath bezierPathWithRect:self.overlapView.bounds];
+        UIBezierPath *leftFullPath = [UIBezierPath bezierPathWithRect:[self.leftPanView convertRect:self.leftPanView.bounds toView:self.overlapView]];
+        UIBezierPath *rightFullPath = [UIBezierPath bezierPathWithRoundedRect:[self.rightPanView convertRect:self.rightPanView.bounds toView:self.overlapView] cornerRadius:self.rightPanView.layer.cornerRadius];
+        
+        UIBezierPath *commonPath = [fullPath copy];
+        commonPath.usesEvenOddFillRule = YES;
+        [commonPath appendPath:rightFullPath.bezierPathByReversingPath];
+        [commonPath appendPath:leftFullPath.bezierPathByReversingPath];
+        commonPath = commonPath.bezierPathByReversingPath;
+        
+        UIBezierPath *leftPath = [fullPath copy];
+        UIBezierPath *rightPath = [fullPath copy];
+        leftPath.usesEvenOddFillRule = YES;
+        rightPath.usesEvenOddFillRule = YES;
+        [leftPath appendPath:rightFullPath.bezierPathByReversingPath];
+        [rightPath appendPath:leftFullPath.bezierPathByReversingPath];
     
-    UIBezierPath *commonPath = [fullPath copy];
-    commonPath.usesEvenOddFillRule = YES;
-    [commonPath appendPath:rightFullPath.bezierPathByReversingPath];
-    [commonPath appendPath:leftFullPath.bezierPathByReversingPath];
-    commonPath = commonPath.bezierPathByReversingPath;
+        [self.overlapView overlapWithViewPaths:@[
+            fullPath,
+            leftPath,
+            rightPath,
+            commonPath,
+        ]];
+    }
     
-    UIBezierPath *leftPath = [fullPath copy];
-    UIBezierPath *rightPath = [fullPath copy];
-    leftPath.usesEvenOddFillRule = YES;
-    rightPath.usesEvenOddFillRule = YES;
-    [leftPath appendPath:rightFullPath.bezierPathByReversingPath];
-    [rightPath appendPath:leftFullPath.bezierPathByReversingPath];
-    
-    [self.overlapView overlapWithViewPaths:@[
-        [UIBezierPath bezierPathWithRect:self.overlapView.bounds],
-        leftPath,
-        rightPath,
-        commonPath,
-    ]];
+    {
+        UIBezierPath *leftFullPath = [UIBezierPath bezierPathWithRect:[self.leftPanView convertRect:self.leftPanView.bounds toView:self.view.window]];
+        UIBezierPath *rightFullPath = [UIBezierPath bezierPathWithRoundedRect:[self.rightPanView convertRect:self.rightPanView.bounds toView:self.view.window] cornerRadius:self.rightPanView.layer.cornerRadius];
+        
+        UIBezierPath *commonPath = [leftFullPath copy];
+        commonPath.usesEvenOddFillRule = YES;
+        [commonPath appendPath:rightFullPath];
+        
+        [[MLWInverseStatusBar sharedInstance] overlapWithViewPaths:@[
+            commonPath,
+        ]];
+    }
 }
 
 @end
